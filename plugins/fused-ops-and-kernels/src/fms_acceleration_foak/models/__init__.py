@@ -21,7 +21,10 @@ PLUGIN_PREFIX = "fms_acceleration_foak"
 
 # TODO: remove the need for the prefix
 def register_foak_model_patch_rules(base_type):
+    ignored_rule_names = ModelPatcher.rules
     ModelPatcher.load_patches(
         [f"{PLUGIN_PREFIX}{postfix}" for postfix in PATCHES],
     )
-    ModelPatcher.patch = partial(ModelPatcher.patch, base_type=base_type)
+    for rule_name, rule in ModelPatcher.rules.items():
+        if rule_name not in ignored_rule_names and rule.forward_builder is not None:
+            rule.forward_builder = partial(rule.forward_builder, base_type=base_type)
