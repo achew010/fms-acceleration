@@ -86,6 +86,15 @@ class FastQuantizedPeftAccelerationPlugin(AccelerationPlugin):
             values=["auto_gptq", "bitsandbytes"],
         )
 
+        # fused ops and internal triton kernels not compatible with liger kernels
+        try:
+            self._check_config_equal(
+                key="peft.quantization.enable_liger_kernels",
+                value=False,
+            )
+        except:
+            raise ValueError("Fast-QPEFT not compatible with Liger Kernels currently.")
+
         # only support these at the moment
         self._check_config_equal(
             key="peft.quantization.fused_ops_and_kernels.fused_lora", value=True

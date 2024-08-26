@@ -1,0 +1,10 @@
+# PEFT-related acceleration
+peft:
+
+  # quantization-releated acceleration
+  # e.g., kernels for quantized base weights
+  quantization: 
+
+    fused_ops_and_kernels:
+
+      enable_liger_kernels: True

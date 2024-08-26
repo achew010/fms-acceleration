@@ -1,0 +1,9 @@
+# FMS Acceleration Plugin Configuration. 
+#
+# Each stanza incorporates various configurations for 
+# different fine-tuning / training tasks.
+plugins:
+  # PEFT-related acceleration
+  peft:
+    # enables the liger kernels, consider moving out of stanza if used without PEFT
+    enable_liger_kernels: true

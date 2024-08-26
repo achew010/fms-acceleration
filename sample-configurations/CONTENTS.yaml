@@ -68,3 +68,8 @@ framework_configs:
         - attention-and-distributed-packing
         - fused-ops-and-kernels
       filename: accelerated-peft-autogptq-foak-padding-free-sample-configuration.yaml
+
+    - shortname: baseline-liger-kernels
+      plugins:
+        - fused-ops-and-kernels
+      filename: baseline-liger-kernels-sample-configuration.yaml
